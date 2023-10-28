@@ -3,3 +3,4 @@
 *.h5
 /trained_models/logs_tb/
 /.idea/
+/__pycache__/
