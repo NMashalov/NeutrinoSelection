@@ -1,6 +1,6 @@
 *.ipynb*
 *.npy
 *.h5
-/trained_models/logs_tb/
+/trained_models/
 /.idea/
 /__pycache__/
