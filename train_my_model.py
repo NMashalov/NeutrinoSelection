@@ -1,10 +1,8 @@
-import h5py as h5
 import os
-import numpy as np
-import matplotlib.pyplot as plt
-from datetime import datetime
-
+import nn
+import train as tr
 import tensorflow as tf
+
 # GPU on
 gpus = tf.config.list_physical_devices('GPU')
 print("The gpu' are:")
@@ -12,30 +10,10 @@ for gpu in gpus:
     print(gpu)
     tf.config.experimental.set_memory_growth(gpu, True)
 
-import nn_builds.nn_constructor as nc
-nc.tfl = tf.keras.layers
-import nn_builds.nn as nn
-nn.tf = tf
-nn.tfl = tf.keras.layers
-nn.nc = nc
-
-from training.losses import focal_loss as loss
-
-import training.ds_making as DS
-DS.np = np
-DS.h5 = h5
-DS.tf = tf
-
-import training.train as TR
-TR.datetime = datetime
-TR.loss = loss
-TR.make_dataset = DS.make_dataset
-TR.h5 = h5
-TR.tf = tf
-TR.plt = plt
-
 # data and model's names
-data_names = [n for n in os.listdir('./data/') if n.endswith('.h5')]
+data_names = os.listdir('./data/')
+data_names = [n for n in data_names if n.endswith('.h5')]
+
 for i, h5n in enumerate(data_names):
     print(str(i + 1), ". " + h5n)
 i = int(input("Which dataset do you want to use? Print it's number! \n"))
@@ -44,7 +22,6 @@ name = data_names[i - 1]
 path_to_h5 = './data/' + name
 
 # scripts for NN
-from training.train import train_model, make_train_figs
 
 model_names = [n for n in dir(nn) if n.startswith('nn')]
 for i, mn in enumerate(model_names):
@@ -63,18 +40,17 @@ except:
 Shape = (None, 6)
 
 # set hyperparams
-lr_initial = 0.005  # tuned
+lr_initial = 0.003  # tuned
 batch_size = 256
-
 
 # making model
 model_func = getattr(nn, model_name)
-model = model_func(Shape, u_list=[32, 16])
+model = model_func(Shape)  # , u_list=[32, 16])
 model_name = input("How do you want to call the model/trial?")
 # model_name = 'test'
 
 trigger = input("Do you want to see model's summary? Type only 'y' or 'n': \n")
-#trigger = 'n'
+# trigger = 'n'
 if trigger == 'y':
     print(model.summary())
 elif trigger == 'n':
@@ -96,6 +72,6 @@ else:
     v = 0
 
 # training model and creating figs
-history = TR.train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape=Shape,
+history = tr.train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape=Shape,
                          num_of_epochs=epochs, verbose=v)
-TR.make_train_figs(history, model_name)
+#tr.make_train_figs(history, model_name)

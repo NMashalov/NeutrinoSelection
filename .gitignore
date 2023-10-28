@@ -3,4 +3,6 @@
 *.h5
 /trained_models/
 /.idea/
-/__pycache__/
+*/__pycache__/
+
+/OLD/

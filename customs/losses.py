@@ -1,7 +1,5 @@
 import tensorflow as tf
-
 class focal_loss(tf.keras.losses.Loss):
-
     def __init__(self, gamma_mu=2.0, gamma_nu=2.0, w_mu=1.0, w_nu=1.0):
         super().__init__()
         self.gamma_mu = gamma_mu

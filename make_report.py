@@ -1,17 +1,16 @@
-import h5py as h5    
 from my_analysis import *
 import numpy as np
 from IPython.display import clear_output
 
 # data and model's names
-data_names = [n for n in os.listdir('../data/') if n.endswith('.h5')]
+data_names = [n for n in os.listdir('data/') if n.endswith('.h5')]
 for i,h5n in enumerate(data_names):
     print(str(i+1),". "+h5n)
 i = int(input("Which dataset do you want to use? Print it's number! \n"))
 name = data_names[i-1]
 path_to_h5 = '../data/' + name
 
-model_names = [n for n in os.listdir('../trained_models/') if not n.startswith('logs') and not n.startswith('.')]
+model_names = [n for n in os.listdir('trained_models/') if not n.startswith('logs') and not n.startswith('.')]
 for i,mn in enumerate(model_names):
     print(str(i+1),". "+mn)
 i = int(input("Which model do you want to choose? Print it's number! \n"))
@@ -32,7 +31,7 @@ else:
     print("Your input is incorrect. Preds will not be recreated.")
 
 # create report dir
-path_to_report = './report_' + model_name + '_' + name
+path_to_report = './preds_analysis/report_' + model_name + '_' + name
 try:
     os.makedirs(path_to_report)
     print('directory for report is created')

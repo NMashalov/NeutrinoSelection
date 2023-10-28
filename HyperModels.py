@@ -1,6 +1,8 @@
-import numpy as np
 import tensorflow as tf
 import keras_tuner as kt
+from customs.losses import focal_loss
+from customs.my_metrics import Expos_on_Suppr
+from nn import *
 
 
 class LstmHyperModel(kt.HyperModel):
@@ -34,7 +36,7 @@ class LstmHyperModel(kt.HyperModel):
 
     def build(self, hp, Shape=(None, 6)):
         self.customise_HP(hp)
-        model = nn.nn_rnn_model(Shape, self.N, self.u_list, self.act, self.rec_act, self.merge_mode, self.is_mask)
+        model = nn_rnn_model(Shape, self.N, self.u_list, self.act, self.rec_act, self.merge_mode, self.is_mask)
         print(model.summary())
         lrate = tf.keras.optimizers.schedules.ExponentialDecay(
             initial_learning_rate=self.lr,

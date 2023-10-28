@@ -1,49 +1,16 @@
 # Basic imports
-import h5py as h5
 import os
-import numpy as np
-# import matplotlib.pyplot as plt
-# from datetime import datetime
+import keras_tuner as kt
+import nn
+import tune_proc as TP
 
-# tensorflow and GPU
-import tensorflow as tf
 
+import tensorflow as tf # tensorflow and GPU
 gpus = tf.config.list_physical_devices('GPU')
 print("The gpu' are:")
 for gpu in gpus:
     print(gpu)
     tf.config.experimental.set_memory_growth(gpu, True)
-import keras_tuner as kt
-
-### my stuff
-import nn_builds.nn_constructor as nc
-
-nc.tfl = tf.keras.layers
-import nn_builds.nn as nn
-
-nn.tf = tf
-nn.tfl = tf.keras.layers
-nn.nc = nc
-
-from training.losses import focal_loss
-from training.my_metrics import Expos_on_Suppr
-import training.ds_making as DS
-
-DS.np = np
-DS.h5 = h5
-DS.tf = tf
-make_dataset = DS.make_dataset
-
-import tuning.tune_proc as TP
-
-TP.nn = nn
-TP.focal_loss = focal_loss
-TP.h5 = h5
-TP.tf = tf
-TP.kt = kt
-TP.make_dataset = make_dataset
-TP.Expos_on_Suppr = Expos_on_Suppr
-TP.np = np
 
 # data and model's names
 data_names = [n for n in os.listdir('data/') if n.endswith('.h5')]
