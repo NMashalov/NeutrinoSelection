@@ -1,10 +1,16 @@
-import training.my_metrics as MM
+import tensorflow as tf
+import h5py as h5
+import matplotlib.pyplot as plt
+from customs.my_metrics import Expos_on_Suppr
+from customs.losses import focal_loss
+from datetime import datetime
+from ds_making import make_dataset
 
-def train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape, num_of_epochs=200, verbose=0, cutting = 1):
+
+def train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape, num_of_epochs=200, verbose=0, cutting=1):
     with h5.File(path_to_h5, 'r') as hf:
         total_num = hf['train/ev_ids_corr/data'].shape[0]
         steps_per_epoch = (total_num // batch_size) // cutting
-    Shape = shape
     print(steps_per_epoch)
     # num_of_epochs = 20z
     decay_rate = 0.05 ** (1 / num_of_epochs)
@@ -13,9 +19,9 @@ def train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape, nu
     lr = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=lr_initial, decay_steps=decay_steps,
                                                         decay_rate=decay_rate)
     optimizer = tf.keras.optimizers.Adam(lr, beta_1=0.9, beta_2=0.999, epsilon=1e-07, amsgrad=False, name='Adam')
-    model.compile(optimizer=optimizer, loss=loss(2., 2., 10., 1.),
+    model.compile(optimizer=optimizer, loss=focal_loss(2., 2., 10., 1.),
                   weighted_metrics=[],
-                  metrics=[MM.Expos_on_Suppr(name="expos_on_suppr", max_suppr_value=5e-6, num_of_points=100000),
+                  metrics=[Expos_on_Suppr(name="expos_on_suppr", max_suppr_value=5e-6, num_of_points=100000),
                            'accuracy'])
 
     # Define the Keras TensorBoard callback.
@@ -27,8 +33,8 @@ def train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape, nu
                  tf.keras.callbacks.ModelCheckpoint(filepath='./trained_models/' + model_name + '/best',
                                                     monitor='val_loss', verbose=verbose,
                                                     save_best_only=True, mode='min'), tensorboard_callback]
-    train_dataset = make_dataset(path_to_h5, 'train', batch_size, Shape)
-    test_dataset = make_dataset(path_to_h5, 'test', batch_size, Shape)
+    train_dataset = make_dataset(path_to_h5, 'train', batch_size, shape)
+    test_dataset = make_dataset(path_to_h5, 'test', batch_size, shape)
 
     history = model.fit(train_dataset, steps_per_epoch=steps_per_epoch, epochs=num_of_epochs,
                         validation_data=test_dataset,

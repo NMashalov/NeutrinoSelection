@@ -1,6 +1,11 @@
 import tensorflow as tf
 import keras_tuner as kt
 import numpy as np
+import h5py as h5
+import nn
+from customs.losses import focal_loss
+from customs.my_metrics import Expos_on_Suppr
+from ds_making import make_dataset
 
 
 class LstmHyperModel(kt.HyperModel):
@@ -75,7 +80,9 @@ def tune(hm_model=LstmHyperModel, path_to_h5=None, model_name="Not_a_name", regi
          num_of_epochs=1,
          max_lr_trials=50, max_hp_trials=100,
          project_name_lr="tune_lr", project_name_hp="tune_hp",
-         u_default=[16, 16, 16, 16]):
+         u_default=None):
+    if u_default is None:
+        u_default = [16, 16, 16, 16]
     assert path_to_h5 is not None
     with h5.File(path_to_h5, 'r') as hf:
         total_num = hf['train/ev_ids_corr/data'].shape[0]
