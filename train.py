@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from customs.my_metrics import Expos_on_Suppr
 from customs.losses import focal_loss
 from datetime import datetime
-from ds_making import make_dataset
+from customs.ds_making import make_dataset
 
 
 def train_model(model, path_to_h5, batch_size, lr_initial, model_name, shape, num_of_epochs=200, verbose=0, cutting=1):

@@ -1,4 +1,3 @@
-import h5py as h5    
 from my_analysis import *
 import numpy as np
 from IPython.display import clear_output

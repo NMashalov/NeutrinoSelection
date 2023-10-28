@@ -1,7 +1,5 @@
 # Basic imports
-import h5py as h5
 import os
-import numpy as np
 import keras_tuner as kt
 import nn
 import tune_proc as TP

@@ -1,18 +1,9 @@
 import h5py as h5
-import tensorflow as tf
 import os
 import numpy as np
 from scipy.stats import beta
 import matplotlib.pyplot as plt
-
-from ds_making import make_dataset
-
-
-## GPU on
-# gpus = tf.config.list_physical_devices('GPU')
-# for gpu in gpus:
-#    print(gpu)
-#    tf.config.experimental.set_memory_growth(gpu, True)
+from customs.ds_making import make_dataset
 
 ### E and S analysis functions
 

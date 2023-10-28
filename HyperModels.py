@@ -1,8 +1,8 @@
+import tensorflow as tf
+import keras_tuner as kt
 from customs.losses import focal_loss
 from customs.my_metrics import Expos_on_Suppr
 from nn import *
-import tensorflow as tf
-import keras_tuner as kt
 
 
 class LstmHyperModel(kt.HyperModel):

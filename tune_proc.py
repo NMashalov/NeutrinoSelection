@@ -5,7 +5,7 @@ import h5py as h5
 import nn
 from customs.losses import focal_loss
 from customs.my_metrics import Expos_on_Suppr
-from ds_making import make_dataset
+from customs.ds_making import make_dataset
 
 
 class LstmHyperModel(kt.HyperModel):
