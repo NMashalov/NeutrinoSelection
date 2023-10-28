@@ -1,0 +1,3 @@
+Default units were: [16, 16, 0, 0]. 
+Best lr = {'lr_i': 0.035, 'loss_w': 10.0} with metric = 0.24114809930324554. 
+Best hp = {'u1': 16, 'u2': 40} with metric = 0.2983570992946625. 

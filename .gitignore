@@ -1,0 +1,4 @@
+*.ipynb*
+*.npy
+*.h5
+/trained_models/logs_tb/
