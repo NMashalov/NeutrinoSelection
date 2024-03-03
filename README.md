@@ -7,15 +7,17 @@ Baikal-GVD is a large (∼ 1 km3) underwater neutrino telescope located in Lake 
 ---
 
 
-<p align="center">
+<div align="center">
  <img width="460" height="300" src=assets/Neutrino.png>
  <table>
     <tr>
         <th><a href=https://indico.jinr.ru/event/3792/contributions/23465/attachments/17254/29376/AYSS_Matseiko_poster.pdf> 🖼️Poster</a> </th>
-        <th> <a> 📄Paper</a> </th>
+        <th> <a>📄Paper</a> </th>
     </tr>
  </table>
-</p>
+</div>
+
+---
 
 The repository contains framework for  data analysis in [Baikal-GVD experiment](https://baikalgvd.jinr.ru/). 
 Neural networks solve problem of separation neutrino-induced events from the background of [EAS's]().
