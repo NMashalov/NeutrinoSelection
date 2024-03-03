@@ -6,6 +6,12 @@ Baikal-GVD is a large (∼ 1 km3) underwater neutrino telescope located in Lake 
 
 ---
 
+
+![](assets/Neutrino.png)
+
+
+
+
 <center>
 | <a href=https://indico.jinr.ru/event/3792/contributions/23465/attachments/17254/29376/AYSS_Matseiko_poster.pdf>Poster</a> | <a>Paper</a>|
 </center>
@@ -17,8 +23,6 @@ Neural networks solve problem of separation neutrino-induced events from the bac
 Repository provides code for Physical-informed neural nets:
 
 ---
-
-![](assets/Neutrino.png)
 
 ### Functionality 
 
