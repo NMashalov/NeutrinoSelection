@@ -5,9 +5,10 @@
 Baikal-GVD is a large (∼ 1 km3) underwater neutrino telescope located in Lake Baikal, Russia. This work presents a neural network for separatingeventscausedbyextensive air showers (EAS) and neutrinos. By choosing appropriate classification threshold, we preserve 50% of neutrino-induced events,while EAS-inducedevents are suppressed by a factor of 10-6. A method for estimating the neutrino flux with minimal error based on neural network predictions has alsobeendeveloped. The developed neural network employ the causal structure of events and surpass the precision of standard algorithmic approaches.
 
 ---
+
 <center>
 | <a href=https://indico.jinr.ru/event/3792/contributions/23465/attachments/17254/29376/AYSS_Matseiko_poster.pdf>Poster</a> | <a>Paper</a>|
-<center>
+</center>
 
 
 The repository contains framework for  data analysis in [Baikal-GVD experiment](https://baikalgvd.jinr.ru/). 
