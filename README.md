@@ -7,13 +7,12 @@ Baikal-GVD is a large (∼ 1 km3) underwater neutrino telescope located in Lake 
 ---
 
 
+<center>
+
 ![](assets/Neutrino.png)
 
-
-
-
-<center>
 | <a href=https://indico.jinr.ru/event/3792/contributions/23465/attachments/17254/29376/AYSS_Matseiko_poster.pdf>Poster</a> | <a>Paper</a>|
+
 </center>
 
 
